@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Asif ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+
+background:linear-gradient(135deg,#ff9ecf,#ffd6ec);
+overflow:hidden;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+
+}
+
+.container{
+
+text-align:center;
+color:white;
+animation:fade 2s;
+
+}
+
+img{
+
+width:230px;
+height:230px;
+border-radius:50%;
+object-fit:cover;
+border:6px solid white;
+box-shadow:0 0 30px rgba(255,255,255,.6);
+margin-bottom:20px;
+
+}
+
+h1{
+
+font-size:45px;
+margin-bottom:10px;
+
+}
+
+h2{
+
+font-size:28px;
+margin-bottom:20px;
+
+}
+
+p{
+
+font-size:20px;
+max-width:700px;
+padding:15px;
+
+}
+
+button{
+
+margin-top:30px;
+padding:15px 40px;
+font-size:18px;
+border:none;
+border-radius:50px;
+background:white;
+color:#ff3d8b;
+cursor:pointer;
+transition:.4s;
+
+}
+
+button:hover{
+
+transform:scale(1.1);
+
+}
+
+.heart{
+
+position:absolute;
+color:white;
+font-size:25px;
+animation:float 6s linear infinite;
+
+}
+
+@keyframes float{
+
+0%{
+transform:translateY(100vh);
+opacity:0;
+}
+
+100%{
+transform:translateY(-100px);
+opacity:1;
+}
+
+}
+
+@keyframes fade{
+
+from{
+opacity:0;
+transform:scale(.8);
+}
+
+to{
+opacity:1;
+transform:scale(1);
+}
+
+}
+
+canvas{
+position:fixed;
+top:0;
+left:0;
+pointer-events:none;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<canvas id="canvas"></canvas>
+
+<div class="container">
+
+<img src="asif.jpg">
+
+<h1>🎂 Happy Birthday 🎂</h1>
+
+<h2>Asif ❤️</h2>
+
+<p>
+
+May your smile never fade.<br><br>
+
+May all your dreams come true.<br><br>
+
+Wishing you endless happiness, success and love.<br><br>
+
+<b>Always Stay Happy ❤️</b>
+
+</p>
+
+<button onclick="start()">
+🎁 Open Surprise
+</button>
+
+<audio id="music" loop>
+<source src="music.mp3">
+</audio>
+
+</div>
+
+<script>
+
+function start(){
+
+document.getElementById("music").play();
+
+alert("Happy Birthday Asif ❤️🎂");
+
+}
+
+for(let i=0;i<40;i++){
+
+let h=document.createElement("div");
+
+h.className="heart";
+
+h.innerHTML="💖";
+
+h.style.left=Math.random()*100+"vw";
+
+h.style.animationDuration=4+Math.random()*4+"s";
+
+h.style.fontSize=20+Math.random()*30+"px";
+
+document.body.appendChild(h);
+
+}
+
+const canvas=document.getElementById("canvas");
+
+const c=canvas.getContext("2d");
+
+canvas.width=window.innerWidth;
+
+canvas.height=window.innerHeight;
+
+let particles=[];
+
+function fire(){
+
+for(let i=0;i<150;i++){
+
+particles.push({
+
+x:canvas.width/2,
+
+y:canvas.height/2,
+
+dx:(Math.random()-.5)*10,
+
+dy:(Math.random()-.5)*10,
+
+life:100
+
+});
+
+}
+
+}
+
+fire();
+
+function animate(){
+
+requestAnimationFrame(animate);
+
+c.clearRect(0,0,canvas.width,canvas.height);
+
+particles.forEach((p,index)=>{
+
+p.x+=p.dx;
+
+p.y+=p.dy;
+
+p.life--;
+
+c.beginPath();
+
+c.arc(p.x,p.y,3,0,Math.PI*2);
+
+c.fillStyle=`hsl(${Math.random()*360},100%,70%)`;
+
+c.fill();
+
+if(p.life<=0){
+
+particles.splice(index,1);
+
+}
+
+});
+
+}
+
+animate();
+
+</script>
+
+</body>
+</html>
